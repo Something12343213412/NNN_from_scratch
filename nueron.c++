@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
-#pragma once
 using namespace std;
+#pragma once
 
 class Neuron {
     private:
@@ -19,6 +19,7 @@ class Neuron {
             // Initialize all the weights to 1
             for (int x = 0; x < numNextLayer; x++)
                 weights[x] = rand();
+            
 
         }
 
@@ -44,6 +45,15 @@ class Neuron {
 
         void setWeights(__int16* inputWeights){
             weights = inputWeights;
+        }
+
+        // use when wanting to print information in a nueron
+        void nueronInfo(){
+            cout << "There are " << weightLength << " weights || they are ";
+            for (__int16 i = 0; i < weightLength; i++)
+                cout << weights[i] <<  " ";
+
+            cout  << endl << " There are " << weightLength << endl;
         }
 
 };
