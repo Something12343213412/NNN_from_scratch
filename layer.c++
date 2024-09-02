@@ -6,14 +6,14 @@ class Layer{
     
     private:
         Neuron* neurons; 
-        __int16 numNeurons;   
+        unsigned __int16 numNeurons;   
 
     public:
-        Layer(__int16 numNeurons, __int16 numFowardLayer){
+        Layer(unsigned __int16 numNeurons, unsigned __int16 numFowardLayer){
             neurons = new Neuron[numNeurons];
             this->numNeurons = numNeurons;
 
-            for (__int16 i = 0; i < numFowardLayer; i++)
+            for (unsigned __int16 i = 0; i < numFowardLayer; i++)
                 neurons[i] = Neuron(numFowardLayer);
         }
 
@@ -21,7 +21,7 @@ class Layer{
             return neurons;
         }
 
-        Neuron getNueron(__int16 index){
+        Neuron getNueron(unsigned __int16 index){
             return neurons[index];
         }
         

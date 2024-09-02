@@ -12,7 +12,7 @@ int main() {
     hiddenLayer.getNuerons()[0].nueronInfo();
 
     Neuron nueron(5);
-    cout << "effective weight: " << nueron.getEffectiveWeights(1) << " Activation " << nueron.getActivation() << " Specific Weight " << nueron.getWeights()[1] ;
+    cout << " Activation " << nueron.getActivation() << " Specific Weight " << nueron.getWeights()[1] ;
 
     return 0; 
 }

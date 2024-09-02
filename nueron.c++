@@ -9,16 +9,15 @@ using namespace arma;
 class Neuron {
     private:
         short activation = rand(); 
-        //__int16* weights;
-        arma::Col<__int16> weights;
-        __int16 weightLength;
+        //__int16 1d vector of weights;
+        arma::Col<unsigned __int16> weights;
+        unsigned __int16 weightLength;
 
     public:
         // Nueron class constructor, initializes the weights
-        Neuron(__int16 numNextLayer) {
-            //weights = new __int16[numNextLayer];
-            // creates a matrix to the previous weights pointer that has dimensions of numNextLater times 1
-            weights = arma::Col<__int16>(numNextLayer,1);
+        Neuron(unsigned __int16 numNextLayer) {
+            // creates a vector weight length numNextLayer
+            weights = arma::Col<unsigned __int16>(numNextLayer);
             weightLength = numNextLayer;
         }
 
@@ -31,7 +30,7 @@ class Neuron {
             //delete[] weights;
         //}
 
-        arma::Col<short> getWeights() {
+        arma::Col<unsigned __int16> getWeights() {
             return weights;
         }
 
@@ -51,7 +50,7 @@ class Neuron {
             //for (__int16 i = 0; i < weights; i++)
         //}
 
-        void setWeight(short neuronY, short inputWeight){
+        void setWeight(short neuronY, unsigned __int16 inputWeight){
             weights[neuronY] = inputWeight;
         }
 
@@ -61,14 +60,6 @@ class Neuron {
             for (__int16 i = 0; i < weightLength; i++)
                 cout << weights[i] <<  " ";
             cout << endl;
-        }
-
-        //applies all the nuerons weights to the next layer
-        __int16 getEffectiveWeights(__int16 nextNeuron){
-            // __int32 represents decimal value in this case of num / 2^31
-            // needed to convert into __int32 bc don't want any overflow, then dividing by 2
-            
-            return 0;
         }
 
 };
