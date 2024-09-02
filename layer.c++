@@ -1,5 +1,6 @@
 #include <iostream>
 #include "nueron.c++"
+#include <armadillo>
 
 class Layer{
     
