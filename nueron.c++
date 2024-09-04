@@ -5,6 +5,7 @@
 using namespace std;
 using namespace arma;
 #pragma once 
+/*
 
 class Neuron {
     private:
@@ -63,3 +64,5 @@ class Neuron {
         }
 
 };
+
+*/
