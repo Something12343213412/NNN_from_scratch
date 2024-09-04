@@ -6,13 +6,11 @@
 int main() {
     
 
-
-    Layer hiddenLayer(10, 5);
-
-    hiddenLayer.getNuerons()[0].nueronInfo();
-
-    Neuron nueron(5);
-    cout << " Activation " << nueron.getActivation() << " Specific Weight " << nueron.getWeights()[1] ;
-
+    HiddenLayer layer(10,10);
+    unsigned __int16* k = layer.getWeights(1);
+    for (int i = 0; i < 10; i++){
+        std::cout << k[i] << endl;
+    }
+    
     return 0; 
 }

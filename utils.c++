@@ -1,7 +1,7 @@
 #include <math.h>
 #include <armadillo>
 
-__int16 relu(unsigned __int16 x){
-    return (x + abs(x))/2;
+__int16 sigmoid(__int128 x){
+    
+    return (__int16)((1/(1+std::exp(-x)))*__INT16_MAX__);
 }
-
