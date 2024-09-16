@@ -1,6 +1,8 @@
 #include <iostream>
 #include <armadillo>
 #include "utils.c++"
+#include <cstdlib>
+
 /*
 class Layer{
     
@@ -40,25 +42,25 @@ class Layer{
 class HiddenLayer{
     private:
         // declaring matrices for weights and activation (a vector)
-        arma::Mat<__int16> *weightMatrix;
-        arma::Col<__int16> *activations;
+        arma::Mat<float> *weightMatrix;
+        arma::Col<float> *activations;
         
         unsigned __int16 numNeurons;
 
     public:
-        HiddenLayer(__int16 numberNeurons, __int16 numberNextLayer){
+        HiddenLayer(float numberNeurons, float numberNextLayer){
             // declaring a AxB size matrix where A is the number of neurons and B is how many weights they need for the next layer
-            weightMatrix = new arma::Mat<__int16>(numberNeurons, numberNextLayer, arma::fill::randn);
-            activations  = new arma::Col<__int16>(numberNeurons, arma::fill::randn);
+            weightMatrix = new arma::Mat<float>(numberNeurons, numberNextLayer, arma::fill::randu);
+            activations  = new arma::Col<float>(numberNeurons, arma::fill::randu);
         }
 
         // gets a vector of one specific row of 
-        arma::Mat<__int16>* getWeights(){
+        arma::Mat<float>* getWeights(){
             return weightMatrix;
         }
 
         // returns a vector of selected column, if invalid returns a null pointer
-        arma::Col<__int16> getWeights(unsigned __int16 column){
+        arma::Col<float> getWeights(unsigned __int16 column){
             try {
                 return weightMatrix->col(column);
             } catch(...){
@@ -67,12 +69,27 @@ class HiddenLayer{
             }
         }
 
-        arma::Col<__int16>* getActivations(){
+        arma::Col<float>* getActivations(){
             return activations;
         }        
 
-        unsigned __int16 getActivationOfResult(unsigned __int16 weightsColumn, __int8 bias){
-            return sigmoid(arma::sum((weightsColumn)* *activations));
+
+        __int16 getActivationOfResult(unsigned __int16 column, float bias = 0){
+            
+            std::cout << trans(weightMatrix->col(column));
+            std::cout << *activations << std::endl;
+
+
+            std::cout << "Product of the two: ";
+
+            
+            
+            std::cout << sum((weightMatrix->col(column) % *activations).eval()) << std::endl;
+            //std::cout << sum(trans(weightMatrix->col(weightsColumn)) * *activations) + bias << std::endl;
+            
+                
+            //return sigmoid(trans(weightMatrix->col(weightsColumn)) * *activations);
+            return 5;
         }
         
 };

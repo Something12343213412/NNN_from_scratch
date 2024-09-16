@@ -2,15 +2,16 @@
 #include "nueron.c++"
 #include "layer.c++"
 #include <armadillo>
+#include <cstdlib>
 
+using namespace std;
 int main() {
     
+    HiddenLayer layer(4,4);
 
-    HiddenLayer layer(10,10);
-    unsigned __int16* k = layer.getWeights(1);
-    for (int i = 0; i < 10; i++){
-        std::cout << k[i] << endl;
-    }
+    
+    std::cout << layer.getActivationOfResult(1, 0) << endl;
+    
     
     return 0; 
 }
