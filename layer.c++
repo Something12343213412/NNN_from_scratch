@@ -2,6 +2,7 @@
 #include <armadillo>
 #include "utils.c++"
 #include <cstdlib>
+using namespace arma;
 
 /*
 class Layer{
@@ -73,23 +74,9 @@ class HiddenLayer{
             return activations;
         }        
 
-
-        __int16 getActivationOfResult(unsigned __int16 column, float bias = 0){
-            
-            std::cout << trans(weightMatrix->col(column));
-            std::cout << *activations << std::endl;
-
-
-            std::cout << "Product of the two: ";
-
-            
-            
-            std::cout << sum((weightMatrix->col(column) % *activations).eval()) << std::endl;
-            //std::cout << sum(trans(weightMatrix->col(weightsColumn)) * *activations) + bias << std::endl;
-            
-                
-            //return sigmoid(trans(weightMatrix->col(weightsColumn)) * *activations);
-            return 5;
+        // returns the product of the two and squishing it with a sigmoid, first input is the column and the second is the bias
+        float getActivationOfResult(unsigned __int16 column, float bias = 0){
+            return sigmoid(static_cast<float>(arma::as_scalar(arma::sum((weightMatrix->col(column) % *activations).eval()))) + bias);
         }
         
 };
