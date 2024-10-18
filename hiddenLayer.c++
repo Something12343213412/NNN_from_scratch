@@ -1,46 +1,8 @@
-#include <iostream>
 #include <armadillo>
 #include "utils.c++"
-#include <cstdlib>
 using namespace arma;
 
-/*
 class Layer{
-    
-    private:
-        Neuron* neurons; 
-        unsigned __int16 numNeurons;
-        arma::Mat<unsigned __int16> weightMatrix = arma::Mat<unsigned __int16>();
-
-    public:
-        Layer(unsigned __int16 numNeurons, unsigned __int16 numFowardLayer){
-            neurons = new Neuron[numNeurons];
-            this->numNeurons = numNeurons;
-
-            for (unsigned __int16 i = 0; i < numFowardLayer; i++)
-                neurons[i] = Neuron(numFowardLayer);
-        }
-
-        Neuron* getNuerons(){
-            return neurons;
-        }
-
-        Neuron getNueron(unsigned __int16 index){
-            return neurons[index];
-        }
-        
-
-    ~Layer() {
-        delete[] neurons;
-    }
-        
-    
-
-};
-
-*/
-
-class HiddenLayer{
     private:
         // declaring matrices for weights and activation (a vector)
         arma::Mat<float> *weightMatrix;
@@ -49,7 +11,9 @@ class HiddenLayer{
         unsigned __int16 numNeurons;
 
     public:
-        HiddenLayer(float numberNeurons, float numberNextLayer){
+        // creates a layer with each nueron having a connection to each nueron in the next layer, first input is the total # of nuerons and the second is the number in the next layer
+        Layer(float numberNeurons, float numberNextLayer){
+            numNeurons = numberNeurons;
             // declaring a AxB size matrix where A is the number of neurons and B is how many weights they need for the next layer
             weightMatrix = new arma::Mat<float>(numberNeurons, numberNextLayer, arma::fill::randu);
             activations  = new arma::Col<float>(numberNeurons, arma::fill::randu);
@@ -78,5 +42,9 @@ class HiddenLayer{
         float getActivationOfResult(unsigned __int16 column, float bias = 0){
             return sigmoid(static_cast<float>(arma::as_scalar(arma::sum((weightMatrix->col(column) % *activations).eval()))) + bias);
         }
+
+        void setAllActivations(Layer *previousLayer){
+            
+        } 
         
 };
